@@ -1,1 +1,45 @@
 @import "tailwindcss";
+
+@import "@fontsource/space-grotesk/latin-500.css";
+@import "@fontsource/space-grotesk/latin-700.css";
+@import "@fontsource/ibm-plex-sans/latin-400.css";
+@import "@fontsource/ibm-plex-sans/latin-500.css";
+@import "@fontsource/ibm-plex-mono/latin-400.css";
+@import "@fontsource/ibm-plex-mono/latin-500.css";
+
+:root {
+  --bg: #0a0e12;
+  --surface: #12181f;
+  --text: #e4e9ee;
+  --muted: #5c6873;
+  --accent: #3ddc84;
+  --border: rgba(61, 220, 132, 0.15);
+}
+
+:root[data-theme="light"] {
+  --bg: #f3f5f2;
+  --surface: #e4e8e1;
+  --text: #0e1418;
+  --muted: #4a5560;
+  --accent: #1e8e52;
+  --border: rgba(30, 142, 82, 0.15);
+}
+
+@theme {
+  --color-background: var(--bg);
+  --color-surface: var(--surface);
+  --color-text: var(--text);
+  --color-muted: var(--muted);
+  --color-accent: var(--accent);
+  --color-border: var(--border);
+
+  --font-sans: "IBM Plex Sans", ui-sans-serif, system-ui, sans-serif;
+  --font-heading: "Space Grotesk", ui-sans-serif, sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, "SFMono-Regular", monospace;
+}
+
+body {
+  background-color: var(--color-background);
+  color: var(--color-text);
+  font-family: var(--font-sans);
+}

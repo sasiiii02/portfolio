@@ -1,0 +1,16 @@
+---
+import profile from '../content/profile.json';
+
+const year = new Date().getFullYear();
+---
+
+<footer class="border-t border-border">
+  <div class="mx-auto flex max-w-6xl flex-col items-center gap-4 px-4 py-8 text-center sm:flex-row sm:justify-between sm:px-6 sm:text-left">
+    <p class="font-mono text-xs text-muted">&copy; {year} {profile.name}</p>
+    <div class="flex items-center gap-6 font-mono text-xs uppercase tracking-wide text-muted">
+      <a href={`mailto:${profile.email}`} class="transition-colors hover:text-accent">Email</a>
+      <a href={profile.github} target="_blank" rel="noreferrer" class="transition-colors hover:text-accent">GitHub</a>
+      <a href={profile.linkedin} target="_blank" rel="noreferrer" class="transition-colors hover:text-accent">LinkedIn</a>
+    </div>
+  </div>
+</footer>
