@@ -1,0 +1,25 @@
+---
+import skills from '../content/skills.json';
+
+const categories = Object.entries(skills) as [string, string[]][];
+---
+
+<section id="skills" class="mx-auto max-w-6xl scroll-mt-24 px-4 py-20 sm:px-6 sm:py-24">
+  <p class="reveal font-mono text-sm uppercase tracking-widest text-accent">04. Skills</p>
+  <h2 class="reveal mt-3 font-heading text-3xl font-bold sm:text-4xl">Skills</h2>
+
+  <div class="mt-10 grid grid-cols-1 gap-6 sm:grid-cols-2">
+    {categories.map(([category, items], index) => (
+      <div class="reveal overflow-hidden rounded-sm border border-border" style={`transition-delay: ${index * 80}ms`}>
+        <div class="border-b border-border bg-surface px-4 py-2 font-mono text-xs uppercase tracking-wide text-muted">
+          {category}
+        </div>
+        <ul class="flex flex-wrap gap-2 p-4">
+          {items.map((skill) => (
+            <li class="rounded-sm border border-border px-3 py-1 font-mono text-xs text-text">{skill}</li>
+          ))}
+        </ul>
+      </div>
+    ))}
+  </div>
+</section>

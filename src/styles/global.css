@@ -14,6 +14,7 @@
   --muted: #5c6873;
   --accent: #3ddc84;
   --border: rgba(61, 220, 132, 0.15);
+  --danger: #f87171;
 }
 
 :root[data-theme="light"] {
@@ -23,6 +24,7 @@
   --muted: #4a5560;
   --accent: #1e8e52;
   --border: rgba(30, 142, 82, 0.15);
+  --danger: #dc2626;
 }
 
 @theme {
@@ -32,6 +34,7 @@
   --color-muted: var(--muted);
   --color-accent: var(--accent);
   --color-border: var(--border);
+  --color-danger: var(--danger);
 
   --font-sans: "IBM Plex Sans", ui-sans-serif, system-ui, sans-serif;
   --font-heading: "Space Grotesk", ui-sans-serif, sans-serif;

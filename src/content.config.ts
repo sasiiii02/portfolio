@@ -40,6 +40,8 @@ const certificates = defineCollection({
     issuer: z.string(),
     date: z.string(),
     description: z.string().optional(),
+    url: z.string().url().optional(),
+    order: z.number(),
   }),
 });
 

@@ -1,37 +1,50 @@
 [
   {
-    "id": "aws-lambda-foundations",
-    "name": "AWS Lambda Foundations",
+    "id": "aws-cloud-practitioner-essentials",
+    "name": "AWS Cloud Practitioner Essentials",
     "issuer": "Amazon Web Services (AWS)",
     "date": "2026-01",
-    "description": "Serverless computing, Lambda functions, event-driven architecture on AWS"
-  },
-  {
-    "id": "linux-for-beginners",
-    "name": "Linux for Beginners",
-    "issuer": "Alison",
-    "date": "2026-01",
-    "description": "Linux fundamentals, command line operations, system administration basics"
-  },
-  {
-    "id": "python-for-beginners",
-    "name": "Programming in Python for Beginners",
-    "issuer": "University of Moratuwa",
-    "date": "2026-01",
-    "description": "Python fundamentals, data structures, algorithms, and basic programming concepts"
+    "description": "Cloud concepts, AWS services, security, architecture, pricing, and support",
+    "order": 1
   },
   {
     "id": "aws-technical-essentials",
     "name": "AWS Technical Essentials",
     "issuer": "Amazon Web Services (AWS)",
     "date": "2026-01",
-    "description": "Core AWS services, cloud concepts, security, architecture, and pricing"
+    "description": "Core AWS services, cloud concepts, security, architecture, and pricing",
+    "order": 2
   },
   {
-    "id": "aws-cloud-practitioner-essentials",
-    "name": "AWS Cloud Practitioner Essentials",
+    "id": "aws-lambda-foundations",
+    "name": "AWS Lambda Foundations",
     "issuer": "Amazon Web Services (AWS)",
     "date": "2026-01",
-    "description": "Cloud concepts, AWS services, security, architecture, pricing, and support"
+    "description": "Serverless computing, Lambda functions, event-driven architecture on AWS",
+    "order": 3
+  },
+  {
+    "id": "deans-list-award",
+    "name": "Dean's List Award",
+    "issuer": "SLIIT | Software Engineering",
+    "date": "2023, 2024",
+    "description": "Academic excellence recognition for maintaining an outstanding GPA (3.9/4.0)",
+    "order": 4
+  },
+  {
+    "id": "python-for-beginners",
+    "name": "Programming in Python for Beginners",
+    "issuer": "University of Moratuwa",
+    "date": "2026-01",
+    "description": "Python fundamentals, data structures, algorithms, and basic programming concepts",
+    "order": 5
+  },
+  {
+    "id": "linux-for-beginners",
+    "name": "Linux for Beginners",
+    "issuer": "Alison",
+    "date": "2026-01",
+    "description": "Linux fundamentals, command line operations, system administration basics",
+    "order": 6
   }
 ]
