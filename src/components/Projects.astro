@@ -1,0 +1,132 @@
+---
+import { getCollection } from 'astro:content';
+import { Image } from 'astro:assets';
+
+const projects = (await getCollection('projects')).sort((a, b) => a.data.order - b.data.order);
+const featured = projects.filter((project) => project.data.status === 'featured');
+const more = projects.filter((project) => project.data.status === 'more');
+---
+
+<section id="projects" class="mx-auto max-w-6xl scroll-mt-24 px-4 py-20 sm:px-6 sm:py-24">
+  <p class="reveal font-mono text-sm uppercase tracking-widest text-accent">03. Projects</p>
+  <h2 class="reveal mt-3 font-heading text-3xl font-bold sm:text-4xl">Projects</h2>
+
+  <div class="mt-10 grid grid-cols-1 gap-8 md:grid-cols-2">
+    {featured.map((project, index) => (
+      <article
+        class="reveal group overflow-hidden rounded-sm border border-border transition-colors hover:border-accent focus-within:border-accent"
+        style={`transition-delay: ${index * 80}ms`}
+      >
+        <a
+          href={`/projects/${project.id}/`}
+          class="block focus:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+        >
+          <div class="aspect-square overflow-hidden border-b border-border bg-surface">
+            <Image
+              src={project.data.image}
+              alt={`Screenshot of the ${project.data.title} interface`}
+              width={800}
+              height={800}
+              class="h-full w-full object-cover transition-transform duration-300 group-hover:scale-[1.03]"
+            />
+          </div>
+        </a>
+
+        <div class="p-5 sm:p-6">
+          <h3 class="font-heading text-lg font-semibold sm:text-xl">
+            <a
+              href={`/projects/${project.id}/`}
+              class="rounded-sm hover:text-accent focus:outline-none focus-visible:ring-2 focus-visible:ring-accent"
+            >
+              {project.data.title}
+            </a>
+          </h3>
+          <p class="mt-2 text-sm text-muted sm:text-base">{project.data.description}</p>
+
+          <ul class="mt-4 flex flex-wrap gap-2">
+            {project.data.tech.map((tech) => (
+              <li class="rounded-sm border border-border px-2 py-1 font-mono text-xs text-muted">{tech}</li>
+            ))}
+          </ul>
+
+          <div class="mt-5 flex flex-wrap items-center gap-4 font-mono text-sm">
+            {project.data.links.github && (
+              <a
+                href={project.data.links.github}
+                target="_blank"
+                rel="noreferrer"
+                class="rounded-sm text-muted transition-colors hover:text-accent focus:outline-none focus-visible:ring-2 focus-visible:ring-accent"
+              >
+                Code
+              </a>
+            )}
+            {project.data.links.demo && (
+              <a
+                href={project.data.links.demo}
+                target="_blank"
+                rel="noreferrer"
+                class="rounded-sm text-muted transition-colors hover:text-accent focus:outline-none focus-visible:ring-2 focus-visible:ring-accent"
+              >
+                Live demo
+              </a>
+            )}
+            <a
+              href={`/projects/${project.id}/`}
+              class="rounded-sm text-accent transition-opacity hover:opacity-80 focus:outline-none focus-visible:ring-2 focus-visible:ring-accent"
+            >
+              Details →
+            </a>
+          </div>
+        </div>
+      </article>
+    ))}
+  </div>
+
+  {more.length > 0 && (
+    <div class="reveal mt-16">
+      <h3 class="font-mono text-sm uppercase tracking-widest text-muted">More projects</h3>
+      <ul class="mt-6 divide-y divide-border border-t border-b border-border">
+        {more.map((project) => (
+          <li class="flex flex-col gap-3 py-5 sm:flex-row sm:items-center sm:justify-between sm:gap-6">
+            <div>
+              <a
+                href={`/projects/${project.id}/`}
+                class="rounded-sm font-heading text-base font-medium hover:text-accent focus:outline-none focus-visible:ring-2 focus-visible:ring-accent sm:text-lg"
+              >
+                {project.data.title}
+              </a>
+              <p class="mt-1 text-sm text-muted">{project.data.description}</p>
+              <ul class="mt-2 flex flex-wrap gap-x-3 gap-y-1 font-mono text-xs text-muted">
+                {project.data.tech.map((tech) => (
+                  <li>{tech}</li>
+                ))}
+              </ul>
+            </div>
+            <div class="flex shrink-0 items-center gap-4 font-mono text-sm">
+              {project.data.links.github && (
+                <a
+                  href={project.data.links.github}
+                  target="_blank"
+                  rel="noreferrer"
+                  class="rounded-sm text-muted transition-colors hover:text-accent focus:outline-none focus-visible:ring-2 focus-visible:ring-accent"
+                >
+                  Code
+                </a>
+              )}
+              {project.data.links.demo && (
+                <a
+                  href={project.data.links.demo}
+                  target="_blank"
+                  rel="noreferrer"
+                  class="rounded-sm text-muted transition-colors hover:text-accent focus:outline-none focus-visible:ring-2 focus-visible:ring-accent"
+                >
+                  Live demo
+                </a>
+              )}
+            </div>
+          </li>
+        ))}
+      </ul>
+    </div>
+  )}
+</section>
