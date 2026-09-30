@@ -1,0 +1,116 @@
+---
+import { Image } from 'astro:assets';
+import profile from '../content/profile.json';
+import avatar from '../assets/profile/profile.jpeg';
+---
+
+<section class="mx-auto flex max-w-6xl flex-col-reverse gap-10 px-4 py-16 sm:px-6 sm:py-20 md:min-h-[80vh] md:flex-row md:items-center md:justify-between md:gap-16 md:py-24">
+  <div class="flex flex-col items-start">
+    <p class="hero-fade hero-fade-1 font-mono text-sm text-accent">{profile.tagline}</p>
+
+    <h1 class="hero-fade hero-fade-2 mt-4 font-heading text-4xl font-bold sm:text-5xl md:text-6xl">
+      {profile.name}
+    </h1>
+
+    <p class="hero-fade hero-fade-3 mt-5 max-w-xl text-base text-muted sm:text-lg">
+      {profile.pitch}
+    </p>
+
+    <div class="hero-fade hero-fade-4 mt-8 flex flex-wrap items-center gap-4">
+      <a
+        href={profile.resumeUrl}
+        class="rounded-sm border border-accent bg-accent px-5 py-2.5 font-mono text-sm font-medium text-background transition-opacity hover:opacity-90"
+      >
+        Download CV
+      </a>
+      <a
+        href="#contact"
+        class="rounded-sm border border-border px-5 py-2.5 font-mono text-sm text-text transition-colors hover:border-accent hover:text-accent"
+      >
+        Contact me
+      </a>
+    </div>
+
+    <div class="hero-fade hero-fade-5 mt-8 flex items-center gap-4">
+      <a
+        href={profile.github}
+        target="_blank"
+        rel="noreferrer"
+        aria-label="Sasanka's GitHub profile"
+        class="flex h-10 w-10 items-center justify-center rounded-sm border border-border text-muted transition-colors hover:border-accent hover:text-accent"
+      >
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22" />
+        </svg>
+      </a>
+      <a
+        href={profile.linkedin}
+        target="_blank"
+        rel="noreferrer"
+        aria-label="Sasanka's LinkedIn profile"
+        class="flex h-10 w-10 items-center justify-center rounded-sm border border-border text-muted transition-colors hover:border-accent hover:text-accent"
+      >
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" />
+          <rect x="2" y="9" width="4" height="12" />
+          <circle cx="4" cy="4" r="2" />
+        </svg>
+      </a>
+    </div>
+  </div>
+
+  <div class="hero-fade hero-fade-photo flex shrink-0 justify-center md:justify-end">
+    <div class="relative h-40 w-40 overflow-hidden rounded-sm border border-border sm:h-52 sm:w-52 md:h-64 md:w-64">
+      <Image
+        src={avatar}
+        alt={`Portrait of ${profile.name}`}
+        width={512}
+        height={512}
+        loading="eager"
+        fetchpriority="high"
+        class="h-full w-full object-cover"
+      />
+    </div>
+  </div>
+</section>
+
+<style>
+  @media (prefers-reduced-motion: no-preference) {
+    .hero-fade {
+      opacity: 0;
+      animation: hero-fade-in 0.6s ease-out forwards;
+    }
+
+    .hero-fade-1,
+    .hero-fade-photo {
+      animation-delay: 0s;
+    }
+
+    .hero-fade-2 {
+      animation-delay: 0.1s;
+    }
+
+    .hero-fade-3 {
+      animation-delay: 0.2s;
+    }
+
+    .hero-fade-4 {
+      animation-delay: 0.3s;
+    }
+
+    .hero-fade-5 {
+      animation-delay: 0.4s;
+    }
+  }
+
+  @keyframes hero-fade-in {
+    from {
+      opacity: 0;
+      transform: translateY(12px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+</style>

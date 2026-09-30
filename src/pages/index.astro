@@ -1,12 +1,8 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import profile from '../content/profile.json';
+import Hero from '../components/Hero.astro';
 ---
 
 <BaseLayout>
-  <section class="mx-auto flex min-h-[70vh] max-w-6xl flex-col items-start justify-center px-4 sm:px-6">
-    <p class="font-mono text-sm uppercase tracking-widest text-accent">4th-year SE student · front-end intern</p>
-    <h1 class="mt-4 font-heading text-5xl font-bold sm:text-6xl">{profile.name}</h1>
-    <p class="mt-2 font-mono text-lg text-muted">{profile.role}</p>
-  </section>
+  <Hero />
 </BaseLayout>
