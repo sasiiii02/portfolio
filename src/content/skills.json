@@ -1,0 +1,6 @@
+{
+  "Frontend": ["HTML", "CSS", "JavaScript", "React", "TypeScript", "Next.js", "Tailwind CSS", "Figma"],
+  "Backend": ["Node.js", "Express.js", "MongoDB", "SQL / SQLite", "PostgreSQL", "JWT Authentication"],
+  "Mobile": ["Kotlin", "Android Studio", "XML UI", "React Native", "Firebase"],
+  "Cloud & Tools": ["AWS", "Docker"]
+}
