@@ -32,6 +32,13 @@ const personSchema = {
     name: profile.education.institution,
   },
 };
+
+const websiteSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'WebSite',
+  name: profile.name,
+  url: Astro.site?.toString(),
+};
 ---
 
 <!doctype html>
@@ -60,6 +67,7 @@ const personSchema = {
     <meta name="description" content={pageDescription} />
     <link rel="canonical" href={canonicalURL} />
 
+    <meta property="og:site_name" content={profile.name} />
     <meta property="og:type" content="website" />
     <meta property="og:title" content={pageTitle} />
     <meta property="og:description" content={pageDescription} />
@@ -74,6 +82,7 @@ const personSchema = {
     <meta name="twitter:image" content={ogImageURL} />
 
     <script type="application/ld+json" set:html={JSON.stringify(personSchema)} />
+    <script type="application/ld+json" set:html={JSON.stringify(websiteSchema)} />
   </head>
   <body class="font-sans antialiased">
     <a href="#main-content" class="skip-link">Skip to content</a>
