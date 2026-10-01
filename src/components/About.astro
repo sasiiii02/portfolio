@@ -2,17 +2,59 @@
 import profile from '../content/profile.json';
 ---
 
-<section id="about" class="mx-auto max-w-6xl scroll-mt-24 px-4 py-20 sm:px-6 sm:py-24">
+<section
+  id="about"
+  aria-labelledby="about-heading"
+  class="mx-auto max-w-6xl scroll-mt-24 px-4 py-20 sm:px-6 sm:py-24"
+>
   <p class="reveal font-mono text-sm uppercase tracking-widest text-accent">01. About</p>
-  <h2 class="reveal mt-3 font-heading text-3xl font-bold sm:text-4xl">About Me</h2>
+  <h2
+    id="about-heading"
+    class="reveal mt-3 font-heading text-3xl font-bold sm:text-4xl"
+  >
+    About Me
+  </h2>
 
-  <div class="mt-10 grid grid-cols-1 gap-10 md:grid-cols-[1.4fr_1fr] md:items-start md:gap-12">
-    <p class="reveal max-w-2xl text-base leading-relaxed text-muted sm:text-lg">
-      {profile.bio}
-    </p>
+  <div
+    class="mt-10 grid grid-cols-1 gap-10 md:grid-cols-[1.4fr_1fr] md:items-start md:gap-12"
+  >
+    <!-- Left: bio paragraphs + highlights -->
+    <div class="flex flex-col gap-6">
+      <div class="reveal flex flex-col gap-4">
+        {profile.bio.map((paragraph) => (
+          <p class="max-w-2xl text-base leading-relaxed text-muted sm:text-lg">
+            {paragraph}
+          </p>
+        ))}
+      </div>
 
+      <!-- Quick highlights -->
+      <ul
+        class="reveal mt-2 grid grid-cols-1 gap-3 sm:grid-cols-3"
+        aria-label="Quick highlights"
+      >
+        {profile.highlights.map((item) => (
+          <li class="rounded-sm border border-border bg-surface px-4 py-3">
+            <p class="font-mono text-xs uppercase tracking-wide text-muted">
+              {item.label}
+            </p>
+            <p class="mt-1 font-heading text-lg font-semibold text-text">
+              {item.value}
+            </p>
+          </li>
+        ))}
+      </ul>
+    </div>
+
+    <!-- Right: education card -->
     <div class="reveal overflow-hidden rounded-sm border border-border">
-      <div class="border-b border-border bg-surface px-4 py-2 font-mono text-xs text-muted">education.json</div>
+      <div
+        class="flex items-center gap-2 border-b border-border bg-surface px-4 py-2 font-mono text-xs text-muted"
+      >
+        <span class="h-2 w-2 rounded-full bg-accent" aria-hidden="true"></span>
+        education.json
+      </div>
+
       <dl class="grid grid-cols-1 gap-4 px-4 py-5 font-mono text-sm">
         <div>
           <dt class="text-xs uppercase tracking-wide text-muted">Degree</dt>
@@ -23,12 +65,18 @@ import profile from '../content/profile.json';
           <dd class="mt-1 text-text">{profile.education.institution}</dd>
         </div>
         <div>
+          <dt class="text-xs uppercase tracking-wide text-muted">Year</dt>
+          <dd class="mt-1 text-text">{profile.education.year}</dd>
+        </div>
+        <div>
           <dt class="text-xs uppercase tracking-wide text-muted">GPA</dt>
           <dd class="mt-1 text-text">{profile.education.gpa}</dd>
         </div>
         <div>
           <dt class="text-xs uppercase tracking-wide text-muted">Honors</dt>
-          <dd class="mt-1 text-text">Dean's List — {profile.deansList.join(', ')}</dd>
+          <dd class="mt-1 text-text">
+            Dean's List — {profile.deansList.join(', ')}
+          </dd>
         </div>
       </dl>
     </div>

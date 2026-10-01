@@ -1,42 +1,114 @@
 ---
 import { getCollection } from 'astro:content';
 
-const certificates = (await getCollection('certificates')).sort((a, b) => a.data.order - b.data.order);
+const certificates = (await getCollection('certificates')).sort(
+  (a, b) => a.data.order - b.data.order
+);
+
+const achievements = certificates.filter((c) => c.data.type === 'achievement');
+const certs = certificates.filter((c) => c.data.type === 'certificate');
 
 function formatDate(value: string) {
   if (/^\d{4}-\d{2}$/.test(value)) {
     const [year, month] = value.split('-').map(Number);
-    return new Date(year, month - 1).toLocaleDateString('en-US', { month: 'short', year: 'numeric' });
+    return new Date(year, month - 1).toLocaleDateString('en-US', {
+      month: 'short',
+      year: 'numeric',
+    });
   }
   return value;
 }
 ---
 
-<section id="certificates" class="mx-auto max-w-6xl scroll-mt-24 px-4 py-20 sm:px-6 sm:py-24">
-  <p class="reveal font-mono text-sm uppercase tracking-widest text-accent">05. Certificates</p>
-  <h2 class="reveal mt-3 font-heading text-3xl font-bold sm:text-4xl">Certificates & Achievements</h2>
+<section
+  id="certificates"
+  aria-labelledby="certificates-heading"
+  class="mx-auto max-w-6xl scroll-mt-24 px-4 py-20 sm:px-6 sm:py-24"
+>
+  <p class="reveal font-mono text-sm uppercase tracking-widest text-accent">
+    05. Credentials
+  </p>
+  <h2
+    id="certificates-heading"
+    class="reveal mt-3 font-heading text-3xl font-bold sm:text-4xl"
+  >
+    Achievements & Certifications
+  </h2>
 
-  <div class="mt-10 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
-    {certificates.map((cert, index) => (
-      <div
-        class="reveal flex flex-col rounded-sm border border-border p-5"
-        style={`transition-delay: ${index * 60}ms`}
-      >
-        <p class="font-mono text-xs text-muted">{formatDate(cert.data.date)}</p>
-        <h3 class="mt-2 font-heading text-base font-semibold sm:text-lg">{cert.data.name}</h3>
-        <p class="mt-1 font-mono text-xs text-accent">{cert.data.issuer}</p>
-        {cert.data.description && <p class="mt-3 text-sm text-muted">{cert.data.description}</p>}
-        {cert.data.url && (
-          <a
-            href={cert.data.url}
-            target="_blank"
-            rel="noreferrer"
-            class="mt-4 self-start rounded-sm font-mono text-sm text-text transition-colors hover:text-accent focus:outline-none focus-visible:ring-2 focus-visible:ring-accent"
+  <!-- Achievements (highlighted) -->
+  {achievements.length > 0 && (
+    <div class="reveal mt-10">
+      <h3 class="font-mono text-xs uppercase tracking-widest text-muted">
+        Achievements
+      </h3>
+
+      <ul class="mt-4 grid grid-cols-1 gap-4">
+        {achievements.map((item) => (
+          <li class="overflow-hidden rounded-sm border border-accent/40 bg-accent/5">
+            <div class="flex flex-col gap-2 p-5 sm:flex-row sm:items-start sm:justify-between sm:gap-6">
+              <div class="flex-1">
+                <h4 class="font-heading text-base font-semibold text-text sm:text-lg">
+                  {item.data.name}
+                </h4>
+                <p class="mt-1 font-mono text-xs text-accent">
+                  {item.data.issuer}
+                </p>
+                {item.data.description && (
+                  <p class="mt-3 text-sm leading-relaxed text-muted">
+                    {item.data.description}
+                  </p>
+                )}
+              </div>
+              <p class="shrink-0 font-mono text-xs text-muted">
+                {formatDate(item.data.date)}
+              </p>
+            </div>
+          </li>
+        ))}
+      </ul>
+    </div>
+  )}
+
+  <!-- Certifications (grid) -->
+  {certs.length > 0 && (
+    <div class="reveal mt-12">
+      <h3 class="font-mono text-xs uppercase tracking-widest text-muted">
+        Certifications
+      </h3>
+
+      <div class="mt-4 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        {certs.map((cert, index) => (
+          <div
+            class="reveal flex flex-col rounded-sm border border-border p-5 transition-colors hover:border-accent"
+            style={`transition-delay: ${index * 60}ms`}
           >
-            View →
-          </a>
-        )}
+            <p class="font-mono text-xs text-muted">
+              {formatDate(cert.data.date)}
+            </p>
+            <h4 class="mt-2 font-heading text-base font-semibold sm:text-lg">
+              {cert.data.name}
+            </h4>
+            <p class="mt-1 font-mono text-xs text-accent">{cert.data.issuer}</p>
+
+            {cert.data.description && (
+              <p class="mt-3 flex-1 text-sm leading-relaxed text-muted">
+                {cert.data.description}
+              </p>
+            )}
+
+            {cert.data.url && (
+              <a
+                href={cert.data.url}
+                target="_blank"
+                rel="noreferrer"
+                class="mt-4 self-start rounded-sm font-mono text-sm text-text transition-colors hover:text-accent focus:outline-none focus-visible:ring-2 focus-visible:ring-accent"
+              >
+                Verify ↗
+              </a>
+            )}
+          </div>
+        ))}
       </div>
-    ))}
-  </div>
+    </div>
+  )}
 </section>

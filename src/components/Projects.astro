@@ -1,39 +1,53 @@
 ---
 import { getCollection } from 'astro:content';
-import { Image } from 'astro:assets';
 
-const projects = (await getCollection('projects')).sort((a, b) => a.data.order - b.data.order);
-const featured = projects.filter((project) => project.data.status === 'featured');
-const more = projects.filter((project) => project.data.status === 'more');
+const projects = (await getCollection('projects')).sort(
+  (a, b) => a.data.order - b.data.order
+);
+const featured = projects.filter((p) => p.data.status === 'featured');
+const more = projects.filter((p) => p.data.status === 'more');
 ---
 
-<section id="projects" class="mx-auto max-w-6xl scroll-mt-24 px-4 py-20 sm:px-6 sm:py-24">
-  <p class="reveal font-mono text-sm uppercase tracking-widest text-accent">03. Projects</p>
-  <h2 class="reveal mt-3 font-heading text-3xl font-bold sm:text-4xl">Projects</h2>
+<section
+  id="projects"
+  aria-labelledby="projects-heading"
+  class="mx-auto max-w-6xl scroll-mt-24 px-4 py-20 sm:px-6 sm:py-24"
+>
+  <p class="reveal font-mono text-sm uppercase tracking-widest text-accent">
+    03. Projects
+  </p>
+  <h2
+    id="projects-heading"
+    class="reveal mt-3 font-heading text-3xl font-bold sm:text-4xl"
+  >
+    Selected Work
+  </h2>
+  <p class="reveal mt-4 max-w-2xl text-base text-muted sm:text-lg">
+    Production platforms I've built at TS Technologies, followed by personal
+    full-stack projects from database schema and REST APIs to responsive
+    frontends.
+  </p>
 
-  <div class="mt-10 grid grid-cols-1 gap-8 md:grid-cols-2">
+  <!-- Featured grid -->
+  <div class="mt-12 grid grid-cols-1 gap-6 md:grid-cols-2">
     {featured.map((project, index) => (
       <article
-        class="reveal group overflow-hidden rounded-sm border border-border transition-colors hover:border-accent focus-within:border-accent"
+        class="reveal group flex flex-col overflow-hidden rounded-sm border border-border transition-colors hover:border-accent focus-within:border-accent"
         style={`transition-delay: ${index * 80}ms`}
       >
-        <a
-          href={`/projects/${project.id}/`}
-          class="block focus:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-background"
-        >
-          <div class="aspect-square overflow-hidden border-b border-border bg-surface">
-            <Image
-              src={project.data.image}
-              alt={`Screenshot of the ${project.data.title} interface`}
-              width={800}
-              height={800}
-              class="h-full w-full object-cover transition-transform duration-300 group-hover:scale-[1.03]"
-            />
+        <!-- Content -->
+        <div class="flex flex-1 flex-col p-5 sm:p-6">
+          <!-- Type badge -->
+          <div class="flex items-center gap-2">
+            <span
+              class="rounded-sm border border-border px-2 py-0.5 font-mono text-[10px] uppercase tracking-wide text-muted"
+            >
+              {project.data.type}
+            </span>
           </div>
-        </a>
 
-        <div class="p-5 sm:p-6">
-          <h3 class="font-heading text-lg font-semibold sm:text-xl">
+          <!-- Title -->
+          <h3 class="mt-3 font-heading text-lg font-semibold sm:text-xl">
             <a
               href={`/projects/${project.id}/`}
               class="rounded-sm hover:text-accent focus:outline-none focus-visible:ring-2 focus-visible:ring-accent"
@@ -41,15 +55,30 @@ const more = projects.filter((project) => project.data.status === 'more');
               {project.data.title}
             </a>
           </h3>
-          <p class="mt-2 text-sm text-muted sm:text-base">{project.data.description}</p>
 
+          <!-- Description -->
+          <p class="mt-2 text-sm leading-relaxed text-muted sm:text-base">
+            {project.data.description}
+          </p>
+
+          <!-- Impact line -->
+          {project.data.impact && (
+            <p class="mt-3 font-mono text-xs text-accent sm:text-sm">
+              → {project.data.impact}
+            </p>
+          )}
+
+          <!-- Tech -->
           <ul class="mt-4 flex flex-wrap gap-2">
             {project.data.tech.map((tech) => (
-              <li class="rounded-sm border border-border px-2 py-1 font-mono text-xs text-muted">{tech}</li>
+              <li class="rounded-sm border border-border px-2 py-0.5 font-mono text-[11px] text-muted">
+                {tech}
+              </li>
             ))}
           </ul>
 
-          <div class="mt-5 flex flex-wrap items-center gap-4 font-mono text-sm">
+          <!-- Links (pushed to bottom) -->
+          <div class="mt-5 flex flex-wrap items-center gap-4 border-t border-border pt-4 font-mono text-sm">
             {project.data.links.github && (
               <a
                 href={project.data.links.github}
@@ -57,7 +86,7 @@ const more = projects.filter((project) => project.data.status === 'more');
                 rel="noreferrer"
                 class="rounded-sm text-muted transition-colors hover:text-accent focus:outline-none focus-visible:ring-2 focus-visible:ring-accent"
               >
-                Code
+                Code ↗
               </a>
             )}
             {project.data.links.demo && (
@@ -67,12 +96,12 @@ const more = projects.filter((project) => project.data.status === 'more');
                 rel="noreferrer"
                 class="rounded-sm text-muted transition-colors hover:text-accent focus:outline-none focus-visible:ring-2 focus-visible:ring-accent"
               >
-                Live demo
+                Live demo ↗
               </a>
             )}
             <a
               href={`/projects/${project.id}/`}
-              class="rounded-sm text-accent transition-opacity hover:opacity-80 focus:outline-none focus-visible:ring-2 focus-visible:ring-accent"
+              class="ml-auto rounded-sm text-accent transition-opacity hover:opacity-80 focus:outline-none focus-visible:ring-2 focus-visible:ring-accent"
             >
               Details →
             </a>
@@ -82,26 +111,50 @@ const more = projects.filter((project) => project.data.status === 'more');
     ))}
   </div>
 
+  <!-- More projects -->
   {more.length > 0 && (
-    <div class="reveal mt-16">
-      <h3 class="font-mono text-sm uppercase tracking-widest text-muted">More projects</h3>
+    <div class="reveal mt-20">
+      <h3 class="font-mono text-sm uppercase tracking-widest text-muted">
+        More Projects
+      </h3>
+
       <ul class="mt-6 divide-y divide-border border-t border-b border-border">
         {more.map((project) => (
-          <li class="flex flex-col gap-3 py-5 sm:flex-row sm:items-center sm:justify-between sm:gap-6">
-            <div>
-              <a
-                href={`/projects/${project.id}/`}
-                class="rounded-sm font-heading text-base font-medium hover:text-accent focus:outline-none focus-visible:ring-2 focus-visible:ring-accent sm:text-lg"
-              >
-                {project.data.title}
-              </a>
-              <p class="mt-1 text-sm text-muted">{project.data.description}</p>
-              <ul class="mt-2 flex flex-wrap gap-x-3 gap-y-1 font-mono text-xs text-muted">
+          <li class="flex flex-col gap-4 py-6 sm:flex-row sm:items-start sm:justify-between sm:gap-8">
+            <!-- Left: content -->
+            <div class="min-w-0 flex-1">
+              <div class="flex flex-wrap items-center gap-3">
+                <a
+                  href={`/projects/${project.id}/`}
+                  class="rounded-sm font-heading text-base font-medium hover:text-accent focus:outline-none focus-visible:ring-2 focus-visible:ring-accent sm:text-lg"
+                >
+                  {project.data.title}
+                </a>
+                <span
+                  class="rounded-sm border border-border px-2 py-0.5 font-mono text-[10px] uppercase tracking-wide text-muted"
+                >
+                  {project.data.type}
+                </span>
+              </div>
+
+              <p class="mt-2 text-sm leading-relaxed text-muted">
+                {project.data.description}
+              </p>
+
+              {project.data.impact && (
+                <p class="mt-2 font-mono text-xs text-accent">
+                  → {project.data.impact}
+                </p>
+              )}
+
+              <ul class="mt-3 flex flex-wrap gap-x-3 gap-y-1 font-mono text-xs text-muted">
                 {project.data.tech.map((tech) => (
                   <li>{tech}</li>
                 ))}
               </ul>
             </div>
+
+            <!-- Right: links -->
             <div class="flex shrink-0 items-center gap-4 font-mono text-sm">
               {project.data.links.github && (
                 <a
@@ -110,7 +163,7 @@ const more = projects.filter((project) => project.data.status === 'more');
                   rel="noreferrer"
                   class="rounded-sm text-muted transition-colors hover:text-accent focus:outline-none focus-visible:ring-2 focus-visible:ring-accent"
                 >
-                  Code
+                  Code ↗
                 </a>
               )}
               {project.data.links.demo && (
@@ -120,7 +173,7 @@ const more = projects.filter((project) => project.data.status === 'more');
                   rel="noreferrer"
                   class="rounded-sm text-muted transition-colors hover:text-accent focus:outline-none focus-visible:ring-2 focus-visible:ring-accent"
                 >
-                  Live demo
+                  Live ↗
                 </a>
               )}
             </div>

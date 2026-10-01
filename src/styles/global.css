@@ -11,7 +11,7 @@
   --bg: #0a0e12;
   --surface: #12181f;
   --text: #e4e9ee;
-  --muted: #5c6873;
+  --muted: #8b95a3;
   --accent: #3ddc84;
   --border: rgba(61, 220, 132, 0.15);
   --danger: #f87171;
@@ -22,9 +22,9 @@
   --surface: #e4e8e1;
   --text: #0e1418;
   --muted: #4a5560;
-  --accent: #1e8e52;
+  --accent: #146e40;
   --border: rgba(30, 142, 82, 0.15);
-  --danger: #dc2626;
+  --danger: #c22020;
 }
 
 @theme {
@@ -45,6 +45,35 @@ body {
   background-color: var(--color-background);
   color: var(--color-text);
   font-family: var(--font-sans);
+}
+
+main:focus {
+  outline: none;
+}
+
+.skip-link {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 100;
+  transform: translateY(-100%);
+  padding: 0.75rem 1.25rem;
+  background-color: var(--color-accent);
+  color: var(--color-background);
+  font-family: var(--font-mono);
+  font-size: 0.875rem;
+  font-weight: 500;
+  border-radius: 0 0 0.25rem 0;
+}
+
+.skip-link:focus {
+  transform: translateY(0);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .skip-link {
+    transition: transform 0.2s ease-out;
+  }
 }
 
 @media (prefers-reduced-motion: no-preference) {

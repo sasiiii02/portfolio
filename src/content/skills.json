@@ -1,6 +1,55 @@
 {
-  "Frontend": ["HTML", "CSS", "JavaScript", "React", "TypeScript", "Next.js", "Tailwind CSS", "Figma"],
-  "Backend": ["Node.js", "Express.js", "MongoDB", "SQL / SQLite", "PostgreSQL", "JWT Authentication"],
-  "Mobile": ["Kotlin", "Android Studio", "XML UI", "React Native", "Firebase"],
-  "Cloud & Tools": ["AWS", "Docker"]
+  "Core Stack": [
+    "React",
+    "TypeScript",
+    "Java",
+    "Spring Boot",
+    "Node.js",
+    "Express.js",
+    "PostgreSQL",
+    "MongoDB"
+  ],
+  "Frontend": [
+    "JavaScript",
+    "Next.js",
+    "Tailwind CSS",
+    "MUI",
+    "Bootstrap",
+    "shadcn/ui",
+    "HTML5",
+    "CSS3",
+    "TanStack Router",
+    "Vite"
+  ],
+  "Backend & APIs": [
+    "REST APIs",
+    "JWT Authentication",
+    "MQTT",
+    "Spring Security",
+    "PayHere Integration"
+  ],
+  "Databases & Data": [
+    "SQL",
+    "MySQL",
+    "SQLite",
+    "MongoDB Atlas",
+    "Schema Design"
+  ],
+  "DevOps & Cloud": [
+    "Docker",
+    "AWS (Lambda, EC2, S3)",
+    "Linux",
+    "Git",
+    "GitHub Actions",
+    "Vercel",
+    "Netlify"
+  ],
+  "Tools & Design": [
+    "Figma",
+    "VS Code",
+    "IntelliJ IDEA",
+    "Postman",
+    "Jira",
+    "Agile/Scrum"
+  ]
 }

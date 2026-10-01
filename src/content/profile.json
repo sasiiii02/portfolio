@@ -1,18 +1,40 @@
 {
   "name": "Sasanka Karunarathna",
-  "role": "Full-Stack Developer | Web & Mobile Applications",
-  "tagline": "4th-year Software Engineering undergraduate at SLIIT · Software Engineer intern at TS Technologies",
-  "pitch": "I build fast, clean interfaces backed by solid full-stack fundamentals, from React front-ends to the APIs and databases behind them. I care about the details that don't show up in a demo — accessibility, performance, and code that's easy to change later.",
-  "resumeUrl": "/cv.pdf",
-  "bio": "I'm a 4th-year Software Engineering undergraduate at SLIIT, currently holding a 3.9/4.0 GPA and a spot on the Dean's List for 2023 and 2024. Alongside my degree, I work as a Software Engineer Intern at TS Technologies, building front-end features for real products used by real teams. I like taking a design and turning it into an interface that's fast, accessible, and holds up under actual use, not just in a demo. After I graduate, I'm looking for a software engineering or front-end role where I can keep building things people rely on.",
+  "role": "Full-Stack Software Engineer",
+  "status": "Software Engineer Intern @ TS Technologies",
+  "pitch": "I build production full-stack features across CRM, HRMS, and analytics platforms — React/TypeScript frontends, Spring Boot & Node.js APIs, and PostgreSQL/MongoDB data layers. Final-year SE undergraduate at SLIIT (GPA 3.83, Dean's List).",
+  "stack": [
+    "React",
+    "TypeScript",
+    "Java",
+    "Spring Boot",
+    "Node.js",
+    "PostgreSQL",
+    "MongoDB",
+    "AWS",
+    "Docker"
+  ],
+  "bio": [
+    "I'm a Software Engineer Intern at TS Technologies, where I ship production features across CRM, HRMS, analytics, and digital signage platforms. I work primarily with React and TypeScript on the frontend, integrating REST APIs and backend services built with Spring Boot and Node.js.",
+    "My day-to-day spans the full stack — building role-based access control systems, real-time dashboards, reporting suites, and legacy-to-React migrations. I've owned features end-to-end: database schema design, API integration, and the UI that ties it together. I also have hands-on experience with Docker, AWS, and Linux through professional and project work.",
+    "I enjoy understanding how systems work end-to-end — from designing intuitive interfaces to integrating APIs, handling data, and building software that stays maintainable well past the first release."
+  ],
+  "highlights": [
+    { "label": "Production Systems", "value": "4+" },
+    { "label": "Dean's List", "value": "All semesters" },
+    { "label": "GPA", "value": "3.83 / 4.0" }
+  ],
+  "resumeUrl": "/Sasanka_Karunarathna_CV.pdf",
   "email": "sasikaru15@gmail.com",
   "github": "https://github.com/sasiiii02",
   "linkedin": "https://www.linkedin.com/in/sasikaru/",
+  "location": "Colombo, Sri Lanka",
+  "availability": "Open to Associate SE roles for 2026",
   "education": {
     "degree": "BSc (Hons) Software Engineering",
     "institution": "SLIIT",
     "year": "4th Year",
-    "gpa": "3.9 / 4.0"
+    "gpa": "3.83 / 4.0"
   },
-  "deansList": ["2023", "2024"]
+  "deansList": ["2023", "2024", "2025"]
 }

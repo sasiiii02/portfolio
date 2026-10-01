@@ -7,10 +7,12 @@ const projects = defineCollection({
     z.object({
       title: z.string(),
       description: z.string(),
+      impact: z.string().optional(),        // NEW: one-line outcome
       tech: z.array(z.string()),
       status: z.enum(['featured', 'more']),
+      type: z.enum(['Professional', 'Personal', 'Academic']).default('Personal'),  // NEW
       order: z.number(),
-      image: image(),
+      image: image().optional(),
       links: z.object({
         github: z.string().url().optional(),
         demo: z.string().url().optional(),
@@ -23,10 +25,12 @@ const experience = defineCollection({
   schema: z.object({
     role: z.string(),
     organization: z.string(),
+    location: z.string().optional(),
     startDate: z.string(),
     endDate: z.string().optional(),
     current: z.boolean().default(false),
     summary: z.string(),
+    stack: z.array(z.string()).default([]),
     highlights: z.array(z.string()),
     order: z.number(),
   }),
@@ -41,8 +45,12 @@ const certificates = defineCollection({
     date: z.string(),
     description: z.string().optional(),
     url: z.string().url().optional(),
+    type: z.enum(['achievement', 'certificate']).default('certificate'),
     order: z.number(),
   }),
 });
+
+
+
 
 export const collections = { projects, experience, certificates };
